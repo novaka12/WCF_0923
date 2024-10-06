@@ -128,7 +128,42 @@ namespace WCF_0923_szerver.Controllers
 
         public string Update(Record record)
         {
-            throw new NotImplementedException();
+            MySqlCommand cmd = new MySqlCommand()
+            {
+                CommandType = System.Data.CommandType.Text,
+                CommandText = "UPDATE Felhasznalok(LoginNev, HASH, SALT, Nev, Jog, Aktiv, Email, Profilkep)" +
+                " SET(@LoginNev, @HASH, @SALT, @Nev, @Jog, @Aktiv, @Email, @Profilkep) WHERE Id = 2",
+                Connection = BaseDatabaseManager.Connection
+            };
+            Felhasznalok updateFelhasznalo = record as Felhasznalok;
+            cmd.Parameters.Add(new MySqlParameter("@LoginNev", updateFelhasznalo.LoginNev));
+            cmd.Parameters.Add(new MySqlParameter("@HASH", updateFelhasznalo.HASH));
+            cmd.Parameters.Add(new MySqlParameter("@SALT", updateFelhasznalo.SALT));
+            cmd.Parameters.Add(new MySqlParameter("@Nev", updateFelhasznalo.Nev));
+            cmd.Parameters.Add(new MySqlParameter("@Jog", updateFelhasznalo.Jog));
+            cmd.Parameters.Add(new MySqlParameter("@Aktiv", updateFelhasznalo.Aktiv));
+            cmd.Parameters.Add(new MySqlParameter("@Email", updateFelhasznalo.Email));
+            cmd.Parameters.Add(new MySqlParameter("@Profilkep", updateFelhasznalo.Profilkep));
+
+            try
+            {
+                cmd.Connection.Open();
+                int db = cmd.ExecuteNonQuery();
+                if (db == 0)
+                {
+                    return "Nem sikerült frissíteni a felhasználót! " + updateFelhasznalo.Nev;
+                }
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine("Hiba! " + e.Message);
+            }
+            finally
+            {
+                BaseDatabaseManager.Connection.Close();
+            }
+            return "Sikeres frissítés!";
         }
     }
 }

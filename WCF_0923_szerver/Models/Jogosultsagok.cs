@@ -14,6 +14,6 @@ namespace WCF_0923_szerver.Models
         [DataMember]
         public string Leiras { get; set; }
         [DataMember]
-        public string Nev { get; set; }
+        public string Nev2 { get; set; }
     }
 }
