@@ -122,6 +122,8 @@
     <Compile Include="DatabaseManagement\IDML.cs" />
     <Compile Include="DatabaseManagement\IDQL.cs" />
     <Compile Include="DatabaseManagement\ISQL.cs" />
+    <Compile Include="DTOs\FelhasznalokNevEmail.cs" />
+    <Compile Include="DTOs\JogosultsagokNevEmail.cs" />
     <Compile Include="Interfaces\IFelhasznalok.cs" />
     <Compile Include="Interfaces\IJogosultsagok.cs" />
     <Compile Include="Models\Felhasznalok.cs" />

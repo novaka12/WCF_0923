@@ -43,6 +43,7 @@ namespace WCF_0923_szerver.Controllers
 
         public string Insert(Record record)
         {
+            int darab = 0;
             MySqlCommand cmd = new MySqlCommand()
             {
                 CommandType = System.Data.CommandType.Text,
@@ -64,6 +65,7 @@ namespace WCF_0923_szerver.Controllers
             {
                 cmd.Connection.Open();
                 int db=cmd.ExecuteNonQuery();
+                darab = db;
                 if(db== 0)
                 {
                     return "Nem sikerült rögzítenem a felhasználót! " + ujFelhasznalo.Nev;
@@ -78,7 +80,7 @@ namespace WCF_0923_szerver.Controllers
             {
                 BaseDatabaseManager.Connection.Close();
             }
-            return "Sikeres hozzáadás!";
+            return "Sikeres hozzáadás!"+darab;
 
         }
 
@@ -132,7 +134,7 @@ namespace WCF_0923_szerver.Controllers
             {
                 CommandType = System.Data.CommandType.Text,
                 CommandText = "UPDATE Felhasznalok(LoginNev, HASH, SALT, Nev, Jog, Aktiv, Email, Profilkep)" +
-                " SET(@LoginNev, @HASH, @SALT, @Nev, @Jog, @Aktiv, @Email, @Profilkep) WHERE Id = 2",
+                " SET(@LoginNev, @HASH, @SALT, @Nev, @Jog, @Aktiv, @Email, @Profilkep)",
                 Connection = BaseDatabaseManager.Connection
             };
             Felhasznalok updateFelhasznalo = record as Felhasznalok;

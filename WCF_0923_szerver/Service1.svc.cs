@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using WCF_0923_szerver.Controllers;
+using WCF_0923_szerver.DTOs;
 using WCF_0923_szerver.Interfaces;
 using WCF_0923_szerver.Models;
 
@@ -56,7 +57,8 @@ namespace WCF_0923_szerver
 
         public string FelhasznaloUpdate_CS(Felhasznalok felhasznalo)
         {
-            throw new NotImplementedException();
+            FelhasznalokController controller = new FelhasznalokController();
+            return controller.Update(felhasznalo);
         }
 
         public List<Jogosultsagok> JogosultsagokLista_CS()
@@ -82,6 +84,36 @@ namespace WCF_0923_szerver
         public string JogosultsagokUpdate_CS(Jogosultsagok jog)
         {
             throw new NotImplementedException();
+        }
+
+        public List<Felhasznalok> FelhasznalokLista_WEB()
+        {
+            return FelhasznalokLista_CS();
+        }
+
+        public string FelhasznaloAdd_WEB(Felhasznalok felhasznalo)
+        {
+            return FelhasznaloAdd_CS(felhasznalo);
+        }
+
+        public string FelhasznaloDelete_WEB(int id)
+        {
+            return FelhasznaloDelete_CS(id);
+        }
+
+        public string FelhasznaloUpdate_WEB(Felhasznalok felhasznalo)
+        {
+            return FelhasznaloUpdate_CS(felhasznalo);
+        }
+
+        public List<FelhasznalokNevEmail> FelhasznalokLista_NevEmailDTO_WEB()
+        {
+            return new FelhasznalokNevEmail().NevEmailDTO();
+        }
+
+        public List<JogosultsagokNevEmail> JogosultsagokLista_NevEmailDTO_WEB()
+        {
+            return new JogosultsagokNevEmail().JogNevEmailDTO();
         }
     }
 }
