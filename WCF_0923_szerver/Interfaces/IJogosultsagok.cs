@@ -31,6 +31,27 @@ namespace WCF_0923_szerver.Interfaces
         string JogosultsagokDelete_CS(int Id);
 
         [OperationContract]
+
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.WrappedRequest, UriTemplate = "/GetJogosultsagokLista")]
+        List<Jogosultsagok> JogosultsagokLista_WEB();
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.WrappedRequest, UriTemplate = "/PostJogosultsagokLista")]
+        string JogosultsagAdd_WEB(Jogosultsagok jog);
+
+        [OperationContract]
+        [WebInvoke(Method = "DELETE", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.WrappedRequest, UriTemplate = "/DeleteJogosultsagokLista")]
+        string JogosultsagDelete_WEB(int id);
+
+        [OperationContract]
+        [WebInvoke(Method = "PUT", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.WrappedRequest, UriTemplate = "/UpdateJogosultsagokLista")]
+        string JogosultsagUpdate_WEB(Jogosultsagok jog);
+
+        [OperationContract]
         [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.WrappedRequest, UriTemplate = "/JogosultsagokDTO")]
         List<JogosultsagokNevEmail> JogosultsagokLista_NevEmailDTO_WEB();
