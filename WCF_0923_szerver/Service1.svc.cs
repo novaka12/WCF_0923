@@ -75,15 +75,19 @@ namespace WCF_0923_szerver
         }
         public string JogosultsagokAdd_CS(Jogosultsagok jog)
         {
-            throw new NotImplementedException();
+            JogosultsagokController controller = new JogosultsagokController();
+            return controller.Insert(jog);
         }
-        public string JogosultsagokDelete_CS(int id)
+        public string JogosultsagokDelete_CS(int Id)
         {
-            throw new NotImplementedException();
+            JogosultsagokController controller = new JogosultsagokController();
+            string valasz = controller.Delete(Id);
+            return valasz;
         }
         public string JogosultsagokUpdate_CS(Jogosultsagok jog)
         {
-            throw new NotImplementedException();
+            JogosultsagokController controller = new JogosultsagokController();
+            return controller.Update(jog);
         }
 
         public List<Felhasznalok> FelhasznalokLista_WEB()
@@ -114,6 +118,26 @@ namespace WCF_0923_szerver
         public List<JogosultsagokNevEmail> JogosultsagokLista_NevEmailDTO_WEB()
         {
             return new JogosultsagokNevEmail().JogNevEmailDTO();
+        }
+
+        public List<Jogosultsagok> JogosultsagokLista_WEB()
+        {
+            return JogosultsagokLista_CS();
+        }
+
+        public string JogosultsagAdd_WEB(Jogosultsagok jog)
+        {
+            return JogosultsagokAdd_CS(jog);
+        }
+
+        public string JogosultsagDelete_WEB(int id)
+        {
+            return JogosultsagokDelete_CS(id);
+        }
+
+        public string JogosultsagUpdate_WEB(Jogosultsagok jog)
+        {
+            return JogosultsagokUpdate_CS(jog);
         }
     }
 }
